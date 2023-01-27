@@ -1,0 +1,72 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<canvas width="1000" height="800"></canvas>
+
+
+<html>
+    
+
+<script>
+
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    pincel.fillStyle = "darkcyan";
+    pincel.fillRect(0, 0, 600, 400);
+
+    function dibujarCirculo(x, y, radio, color) {
+
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x, y, radio, 0, 2*3.14);
+        pincel.fill();
+    }
+    
+    //circulos de los semaforo
+    dibujarCirculo(300,140,30,"green");
+    dibujarCirculo(300,200,30,"yellow");
+    dibujarCirculo(300,260,30,"red");
+
+    //texto de semaforo
+    pincel.fillStyle="#cccccc";
+    pincel.font="bold 35px arial";
+    pincel.fillText("SEMAFORO",210,70);
+
+    function disparar(evento){
+
+        
+        
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+        console.log(x);
+        console.log(y);
+
+        if (x <= 330 && y >= 110 && y<=170)   
+        {
+            alert("Semaforo en verde: AVANZA");
+          
+        }
+        if (x <= 390 && y>=171 && y <= 230)   
+        {
+            alert("Semaforo en amarillo: REDUCE LA VELOCIDAD");
+          
+        }
+        if (x <= 330 && y>=231 && y <= 290)   
+        {
+            alert("Semaforo en rojo: ALTO TOTAL");
+          
+        }
+       
+    }
+	
+    function intermitente(evento){
+        
+    }
+pantalla.onclick = disparar;
+
+</script>
+
+    <h1>Hola</h1>
+
+<body>
+    
+</body>
+</html>
